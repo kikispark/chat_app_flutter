@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "633498668225",
+    "firebase_url": "https://shop-app-30e37-default-rtdb.firebaseio.com",
+    "project_id": "shop-app-30e37",
+    "storage_bucket": "shop-app-30e37.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:633498668225:android:f165561654f33b60521840",
+        "android_client_info": {
+          "package_name": "com.example.chat_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBItV0Papx7jRlnoT6juAc_myT8FJ2TdXI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
