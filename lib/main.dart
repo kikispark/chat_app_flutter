@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
             .white, //Sets the background color of all Scaffolds (the base screen background)
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.pink,
-        ).copyWith(secondary: Colors.pinkAccent),
+        ).copyWith(secondary: Colors.deepPurpleAccent),
         //secondary color is used for floating action buttons, highlights,progress indicators etc.
         appBarTheme: const AppBarTheme(
           backgroundColor: Color.fromARGB(
@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
         builder: (ctx, userSnapshot) {
           if (userSnapshot.hasData) {
             return ChatScreen();
-          } 
+          }
           return AuthScreen();
         },
       ),
