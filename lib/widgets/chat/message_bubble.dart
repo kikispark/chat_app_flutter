@@ -2,11 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class MessageBubble extends StatelessWidget {
-  MessageBubble(this.message, this.isMe, this.userId, {super.key});
+  MessageBubble(this.message, this.isMe, this.username, {super.key});
 
   final String message;
   final bool isMe;
-  final String userId;
+  final String username;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class MessageBubble extends StatelessWidget {
         decoration: BoxDecoration(
           color: !isMe ? Colors.teal : Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(12),
+            topLeft: Radius.circular(12), 
             topRight: Radius.circular(12),
             bottomLeft: !isMe ? Radius.circular(0) : Radius.circular(12),
             bottomRight: isMe ? Radius.circular(0) : Radius.circular(12),
@@ -38,26 +38,16 @@ class MessageBubble extends StatelessWidget {
               ? CrossAxisAlignment.end
               : CrossAxisAlignment.start,
           children: <Widget>[
-            FutureBuilder(
-              future: FirebaseFirestore.instance
-                  .collection('users')
-                  .doc(userId)
-                  .get(),
-              builder: (context, asyncSnapshot) {
-                if (asyncSnapshot.connectionState == ConnectionState.waiting) {
-                  return Text('Loading ...');
-                }
-                return Text(
-                  asyncSnapshot.data!['username'],
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: isMe
-                        ? Colors.black
-                        : Theme.of(context).colorScheme.onSecondary,
-                  ),
-                );
-              },
+            Text(
+              username,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: isMe
+                    ? Colors.black
+                    : Theme.of(context).colorScheme.onSecondary,
+              ),
             ),
+
             Text(
               textAlign: isMe ? TextAlign.end : TextAlign.start,
               message,

@@ -1,4 +1,5 @@
 // widgets/auth/auth_form.dart
+import 'package:chat_app/pickers/user_image_picker.dart';
 import 'package:flutter/material.dart';
 
 class AuthForm extends StatefulWidget {
@@ -20,7 +21,7 @@ class AuthForm extends StatefulWidget {
 
 class _AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
-  var isLogin = true;
+  var _isLogin = true;
   String _userEmail = '';
   String _userName = '';
   String _userPassword = '';
@@ -35,7 +36,7 @@ class _AuthFormState extends State<AuthForm> {
         _userEmail.trim(),
         _userPassword.trim(),
         _userName.trim(),
-        isLogin,
+        _isLogin,
         context,
       );
     }
@@ -56,12 +57,15 @@ class _AuthFormState extends State<AuthForm> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  if (!_isLogin) UserImagePicker(),
+
                   TextFormField(
                     key: const ValueKey('email'),
                     validator: (value) {
                       if (value!.isEmpty || !value.contains('@')) {
                         return 'Please enter a valid email address';
                       }
+
                       return null;
                     },
                     keyboardType: TextInputType.emailAddress,
@@ -70,7 +74,7 @@ class _AuthFormState extends State<AuthForm> {
                     ),
                     onSaved: (value) => _userEmail = value!,
                   ),
-                  if (!isLogin)
+                  if (!_isLogin)
                     TextFormField(
                       key: const ValueKey('username'),
                       validator: (value) {
@@ -110,17 +114,17 @@ class _AuthFormState extends State<AuthForm> {
                         Text(
                           isLoading
                               ? 'Processing...'
-                              : (isLogin ? 'Login' : 'Signup'),
+                              : (_isLogin ? 'Login' : 'Signup'),
                         ),
                       ],
                     ),
                   ),
                   TextButton(
                     onPressed: () {
-                      setState(() => isLogin = !isLogin);
+                      setState(() => _isLogin = !_isLogin);
                     },
                     child: Text(
-                      isLogin
+                      _isLogin
                           ? 'Create new account'
                           : 'I already have an account',
                     ),
